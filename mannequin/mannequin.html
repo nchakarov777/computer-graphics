@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="three.min.js"></script>
+    <script src="human.js"></script>
+</head>
+
+<body>
+<h1>"Първа Целувка"<br>
+    <small>ф.н. 81480 &ndash; група 4 &ndash; Николай Чакъров</small>
+</h1>
+
+<audio id="music" autoplay loop>
+    //Мощно камелияяяяя
+    <source src="kameliqceluvajme.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    document.getElementsByTagName('h1')[0].style = 'color:white; text-align:center; font-size:1.75em';
+
+    renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+    renderer.domElement.style = 'width:100%; height:100%; position:fixed; top:0; left:0; z-index:-1;';
+
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 2000);
+    camera.position.set(0, 3, 150);
+
+    var light = new THREE.DirectionalLight('lightblue', 0.8);
+    light.position.set(0, 1, 4);
+    scene.add(light);
+    scene.add(new THREE.AmbientLight('white', 0.4));
+
+    var t = 0;
+    function drawFrame() {
+        requestAnimationFrame(drawFrame);
+        if (animate) animate(t++);
+        renderer.render(scene, camera);
+    }
+
+    адам = мъжествен();
+
+    //разширяване на краката на адам
+    адам.position.set(-8, 0, 0);
+    адам.д_крак.врът(10 * sin(t) - 8, 0, 0);
+    адам.л_крак.врът(10 * sin(t) + 8, 0, 0);
+
+
+    ева = женствен();
+    //завъртане на принцесата че да вижда годеника си
+    ева.rotation.set(0, rad(185), 0);
+
+    //промяна на позицията не ръцете й че да има допир с адамчо
+    ева.л_лакът.врът(0, 0, 10 * cos(t) - 150);
+    ева.л_ръка.врът(5 * cos(t) - 20, 0, 0);
+    ева.л_китка.врът(0, 0, 5 * cos(t) - 25);
+
+    ева.д_лакът.врът(0, 0, 10 * cos(t) - 150);
+    ева.д_ръка.врът(5 * cos(t) + 10, 0, 0);
+    ева.д_китка.врът(0, 0, 5 * cos(t) - 25);
+
+
+    animate = function (t) {
+
+        scene.rotateY(0.003);
+
+        camera.position.set(0, -10, 180 + 30 * cos(t / 10));
+
+        //ръцете на перверзника пипат дупето на ева
+        адам.д_ръка.врът(0, 0, 10 * sin(t/3) - 55);
+        адам.д_китка.врът(0, 0, 10 * sin(t/3) + 10);
+        адам.д_лакът.врът(10 * sin(t) + 30, 0, 0);
+
+        адам.л_ръка.врът(0, 0, 10 * sin(t) - 50);
+        адам.л_китка.врът(0, 0, 10 * sin(t) + 10);
+        адам.л_лакът.врът(10 * sin(t) - 35, 0, 0);
+
+        //ева и става готино и си дига крачето, защото е влюбена и загубена
+        ева.д_коляно.врът(0, 0, 50 * sin(t) + 50);
+
+        //адамчо мърда главата, че да не се целунат нос в нос
+        адам.тяло.врът(0, 0, 5 * sin(t) - 5);
+        адам.глава.врът(0, 10, 5 * sin(t) + 10);
+
+        //това че е влюбена не и пречи да се прави на недостъпна и избутва негодника
+        ева.л_лакът.врът(0, 0, 10 * cos(t) - 155);
+        ева.д_лакът.врът(0, 0, 10 * cos(t) - 155);
+    };
+
+    drawFrame();
+</script>
+</body>
+</html>
